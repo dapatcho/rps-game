@@ -10,21 +10,27 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-// if
-
-// function playRound(playerSelection, computerSelection) {
-// if (playerSelection === computerSelection) {
-//   return "It's a draw! You threw the same hands."
-// }
-// else if (playerSelection)
-// }
-const playerSelection = "ROCK";
-const computerSelection = getComputerChoice();
-
 function caseChange(string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
-caseChange(playerSelection);
-console.log(playerSelection);
 
-// console.log(playRound(playerSelection, computerSelection))
+function playRound(playerSelection, computerSelection) {
+  playerSelection = caseChange(playerSelection);
+
+  if (playerSelection === computerSelection) {
+    return "It's a draw! You threw the same hands.";
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection == "Paper")
+  ) {
+    return `You win! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
+  } else {
+    return `You lose! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
+  }
+}
+const playerSelection = "ROCK";
+const computerSelection = getComputerChoice();
+caseChange(playerSelection);
+console.log(playRound(playerSelection, computerSelection));
+
