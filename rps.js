@@ -15,7 +15,6 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = caseChange(playerSelection);
 
   if (playerSelection === computerSelection) {
-    // return "It's a draw! You threw the same hands.";
     return "draw";
   } else if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
@@ -23,10 +22,8 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "Scissors" && computerSelection == "Paper")
   ) {
     return "win";
-    // return `You win! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
   } else {
     return "loss";
-    // return `You lose! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
   }
 }
 
