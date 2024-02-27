@@ -1,4 +1,4 @@
-console.log("hey");
+console.log("Start");
 
 function getComputerChoice() {
   const computerOptions = ["Rock", "Paper", "Scissors"];
@@ -15,18 +15,18 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = caseChange(playerSelection);
 
   if (playerSelection === computerSelection) {
-    gameDraws = gameDraws++;
-    return "It's a draw! You threw the same hands.";
+    // return "It's a draw! You threw the same hands.";
+    return "draw";
   } else if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
     (playerSelection === "Paper" && computerSelection === "Rock") ||
     (playerSelection === "Scissors" && computerSelection == "Paper")
   ) {
-    playerWins = playerWins++;
-    return `You win! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
+    return "win";
+    // return `You win! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
   } else {
-    computerWins = computerWins++;
-    return `You lose! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
+    return "loss";
+    // return `You lose! You chose ${playerSelection} and the computer chose ${computerSelection}.`;
   }
 }
 
@@ -34,13 +34,41 @@ function playGame() {
   let playerWins = 0;
   let computerWins = 0;
   let gameDraws = 0;
+
   for (var i = 1; i <= 5; i++) {
-    const playerSelection = "ROCK";
+    const playerSelection = prompt(
+      "Please type 'rock', 'paper', or 'scissors':"
+    );
     const computerSelection = getComputerChoice();
     caseChange(playerSelection);
     caseChange(computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
+    let out = playRound(
+      playerSelection,
+      computerSelection,
+      playerWins,
+      computerWins,
+      gameDraws
+    );
+    if (out == "draw") {
+      console.log("draw");
+      gameDraws++;
+    } else if (out == "win") {
+      console.log("win");
+      playerWins++;
+    } else {
+      console.log("loss");
+      computerWins++;
+    }
+  }
+
+  if (playerWins === computerWins) {
+    return "It's a draw! Neither of you gained the advantage in 5 rounds.";
+  } else if (playerWins > computerWins) {
+    return `You win! You beat the computer ${playerWins} to ${computerWins}`;
+  } else {
+    return `You lose! The computer beat you ${computerWins} to ${playerWins}`;
   }
 }
 
-console.log(playGame());
+const result = playGame();
+console.log(result);
